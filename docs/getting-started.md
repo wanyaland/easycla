@@ -19,7 +19,7 @@ This high-level diagram shows the different flows and roles that EasyCLA support
 ![](imgs/cla_diagram_v8.png)	
 
 
-
+asdfasdf
 ## What Role are You?
 How you interact with EasyCLA depends on your role. EasyCLA supports the following roles in its workflow:
 
