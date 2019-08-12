@@ -503,12 +503,17 @@ def user_signed_project_signature(user, project_id, latest_major_version=True):
              user.get_user_id(), project_id)
     # Check employee signature.
     company_id = user.get_user_company_id()
+    cla.log.debug("User's company id is {}".format(company_id))
     if company_id is not None:
         signature = user.get_latest_signature(project_id, company_id=company_id)
+
+        cla.log.debug("Signature for user {}, company {}, and project {} is {}".format(user.get_user_id(), company_id, project_id, signature))
         # Don't check the version for employee signatures.
         if signature is not None and signature.get_signature_signed() and signature.get_signature_approved():
             cla.log.info('User has employee CLA signed and approved for project: %s', project_id)
             return True
+        else:
+            cla.log.debug('User has not signed an up to date CLA for project %s', project_id)
     return False
 
 def get_redirect_uri(repository_service, installation_id, github_repository_id, change_request_id):

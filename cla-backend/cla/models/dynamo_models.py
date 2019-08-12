@@ -1176,6 +1176,7 @@ class User(model_interfaces.User):  # pylint: disable=too-many-public-methods
         :rtype: cla.models.model_interfaces.Signature or None
         """
         signatures = self.get_user_signatures(project_id=project_id, company_id=company_id)
+        cla.log.debug("All signatures for user {} are: {}".format(self.get_user_id(), signatures))
         latest = None
         for signature in signatures:
             if latest is None:
@@ -1189,7 +1190,7 @@ class User(model_interfaces.User):  # pylint: disable=too-many-public-methods
         if latest is None:
             self.log_debug('unable to find user signature')
         else:
-            self.log_debug('found user user signature')
+            self.log_debug('found user signature')
 
         return latest
 

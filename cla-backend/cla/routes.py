@@ -330,6 +330,17 @@ def get_user_project_company_last_signature(user_id: hug.types.uuid,
     return cla.controllers.user.get_user_project_company_last_signature(user_id, project_id, company_id)
 
 
+@hug.get('/user/{user_id}/project/{project_id}/has-valid-cla-signature', versions=2)
+def get_user_project_has_signed_project_signature(user_id: hug.types.uuid,
+                                                  project_id: hug.types.uuid):
+    """
+    GET: /user/{user_id}/project/{project_id}//has-valid-cla-signature
+
+    Returns True or False depending on whether the user is covered by a valid ICLA or CCLA
+    """
+    return cla.controllers.user.get_user_project_has_signed_project_signature(user_id, project_id)
+
+
 # #
 # # Signature Routes.
 # #

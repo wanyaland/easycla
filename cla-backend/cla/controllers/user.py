@@ -299,6 +299,27 @@ def get_user_project_company_last_signature(user_id, project_id, company_id):
         last_signature['requires_resigning'] = last_signature['latest_document_major_version'] != last_signature['signature_document_major_version']
     return last_signature
 
+
+def get_user_project_has_signed_project_signature(user_id, project_id):
+    """
+    Returns True or False depending on whether the user is covered by a valid ICLA or CCLA
+
+    :param user_id: The ID of the user.
+    :type user_id: string
+    :param project_id: The project in question.
+    :type project_id: string
+    :return: True or false
+    :rtype: bool
+    """
+    user = get_user_instance()
+    try:
+        user.load(str(user_id))
+    except DoesNotExist as err:
+        return {'errors': {'user_id': str(err)}}
+
+    return cla.utils.user_signed_project_signature(user, project_id)
+
+
 # For GitHub user creating, see models.github_models.get_or_create_user(self, request)
 def get_or_create_user(auth_user):
     user = User()
