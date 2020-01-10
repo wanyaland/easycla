@@ -1529,8 +1529,6 @@ class User(model_interfaces.User):  # pylint: disable=too-many-public-methods
             for pattern in patterns:
                 if pattern.startswith("*."):
                     pattern = pattern.replace("*.", ".*\.")
-                elif pattern.startswith("*"):
-                    pattern = pattern.replace("*", ".*\.")
                 elif pattern.startswith("."):
                     pattern = pattern.replace(".", ".*\.")
 
