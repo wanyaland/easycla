@@ -792,7 +792,7 @@ jobs:
             source ${BASH_ENV}
             echo "Running functional tests for stage: ${STAGE}"
             cd tests/rest
-            tavern-ci test_*.tavern.yaml --alluredir=allure_result_folder -v || true
+            py.test --alluredir=allure_result_folder -v || true
 
   functionalTestsDev:
     <<: *functionalTests
