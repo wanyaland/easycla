@@ -164,7 +164,9 @@ class UserServiceInstance:
                 for scope in user_role['RoleScopes'][0]['Scopes']:
                     log.info(f'{function}- Checking objectID for scope: {project_sfid}|{organization_id}')
                     if scope['ObjectID'] == f'{project_sfid}|{organization_id}':
+                        log.info(f'{username} has cla-manager role for {project_sfid}|{organization_id}')
                         return True
+        log.info(f'{username} does not have cla-manager role for {project_sfid}|{organization_id}')
         return False
 
 
